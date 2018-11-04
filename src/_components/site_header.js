@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
-import { cxOptions } from "../common_utils";
-import * as constants from "../common_constants";
+import { cxOptions } from "../utils";
+import { root, title, headerItems } from "../constants";
 import "./site_header.scss";
 
 const TitleHeaderItem = ({ title }) => (
   <div className="SiteHeader-title">
     <NavLink
       exact
-      to={constants.root}
+      to={root}
       activeClassName="SiteHeader-navActive"
     >
       {title}
@@ -48,10 +48,10 @@ const SiteHeader = () => (
   <div className="SiteHeader">
     <div className="SiteHeader-list">
       <div className="SiteHeader-title-holder">
-        <TitleHeaderItem title={constants.title} />
+        <TitleHeaderItem title={title} />
       </div>
       <div className="SiteHeader-item-holder">
-        {constants.headerItems.map(({ name, path, options }) => (
+        {headerItems.map(({ name, path, options }) => (
           <HeaderItem key={name} path={path} name={name} options={options} />
         ))}
       </div>

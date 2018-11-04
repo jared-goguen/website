@@ -1,18 +1,21 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import Logo from "./logo.svg";
-import SiteHeader from "./common/_components/site_header";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import SiteHeader from "./_components/site_header";
+import Home from './home/home';
+import { headerItems } from "./constants";
 import "./App.scss";
 
 const App = () => (
   <BrowserRouter>
     <div className="App">
       <SiteHeader />
-      <div className="App-holder">
-        <Logo className="App-logo" alt="logo" />
-      </div>
+      <Route exact path='/' component={Home} />
+      {headerItems.map(({path, component}) => (
+        <Route key={path} path={path} component={component} />
+      ))}
     </div>
   </BrowserRouter>
 );
 
-export default App;
+ReactDOM.render(<App />, document.getElementById('app'));

@@ -5,13 +5,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   target: 'web',
   entry: {
-    app: './src/index.js'
+    app: './src/App.js'
   },
   plugins: [
     new CleanWebpackPlugin(['public']),
     new HtmlWebpackPlugin({
       title: 'TITLE',
-      favicon: 'src/logo.svg',
+      favicon: 'assets/logo.svg',
       inject: false,
       template: require('html-webpack-template'),
       appMountId: 'app'
@@ -22,6 +22,9 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
+    alias: {
+      Assets: path.resolve(__dirname, 'assets'),
+    },
     extensions: ['.js', '.jsx']
   },
   module: {
@@ -45,6 +48,9 @@ module.exports = {
         use: {
           loader: 'react-svg-loader'
         }
+      }, {
+        test: /\.(jpg|png)$/,
+        loader: 'url-loader'
       }
     ]
   }
