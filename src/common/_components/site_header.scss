@@ -1,0 +1,52 @@
+@import '../common_style';
+
+.SiteHeader {
+  padding: 1rem;
+
+  // Styling for the active path
+  &-navActive {
+    color: $text-accent-light;
+  }
+
+  &-list {
+    width: 100%;
+    display: inline-flex;
+  }
+
+  &-title {
+    padding: 1rem;
+
+    &-holder {
+
+    }
+  }
+
+  &-item {
+    display: inline-flex;
+    padding: 1rem;
+    margin-left: 0.5rem;
+
+    &:hover, &:active {
+      color: $border-primary;
+    }
+
+    &-holder {
+      display: block;
+      text-align: right;
+      flex-grow: 1;
+    }
+
+    &-border {
+      border: 1px solid $border-primary;
+
+      &:hover, &:active {
+        background: $border-primary;
+        color: $background-primary;
+
+        a.SiteHeader-navActive {
+          color: $text-accent-dark
+        }
+      }
+    }
+  }
+}
