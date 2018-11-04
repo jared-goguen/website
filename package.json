@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "heroku-prebuild": "npm install --dev",
+    "heroku-postbuild": "npm run-script build",
     "build": "webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --hot --config webpack.dev.js"
+    "dev": "webpack-dev-server --hot --config webpack.dev.js",
+    "start": "node server.js"
   },
   "dependencies": {
+    "express": "^4.16.4",
     "immutable": "^3.8.2",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
