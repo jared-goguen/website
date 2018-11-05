@@ -1,8 +1,14 @@
 @import '../vars';
 
 .SiteHeader {
+  position: relative;
+  left: 0;
+  right: 0;
+  text-align: left;
   padding: 1rem;
   font-family: $font-accent;
+  font-size: 4rem;
+  user-select: none;
 
   &-navActive {
     color: $text-accent-light;
@@ -15,14 +21,64 @@
 
   &-title {
     padding: 1rem;
+    flex-grow: 1;
+  }
 
-    &-holder {
+  &-button {
+    z-index: 2;
+    width: 5rem;
+    text-align: right;
+    padding: unset;
+    position: relative;
 
+    &:hover {
+      span:last-child {
+        top: 3rem;
+      }
+    }
+
+    &-span {
+      position: absolute;
+      top: 1rem;
+      left: 0;
+      right: 0;
+      height: 1rem;
+      background: $text-accent-light;
+      transition: all 0.5s;
+      border-radius: 1rem;
+
+      &-open {
+        transform: rotate(-45deg);
+      }
+    }
+
+  }
+
+  &-hamburger {
+    color: $text-primary;
+
+    &-overlay {
+      position: fixed;
+      top: -100%;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: $text-primary;
+      color: $background-primary;
+      transition: top 0.5s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      z-index: 1;
+
+      &-open {
+        top: 0;
+      }
     }
   }
 
   &-item {
-    display: inline-flex;
     padding: 1rem;
     margin-left: 0.5rem;
 

@@ -1,0 +1,15 @@
+@import 'Source/vars.scss';
+
+.Blog {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 100px;
+  font-family: $font-accent4;
+
+  &-logo {
+    height: 40vmin;
+  }
+}

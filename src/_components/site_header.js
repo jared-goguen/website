@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { cold } from "react-hot-loader";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
-import FlipText from './flip_text';
+import FlipText from "./flip_text";
 import { cx } from "../utils";
 import { rootItem, headerItems } from "../constants";
 import "./site_header.scss";
@@ -19,8 +20,11 @@ TitleHeaderItem.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const HeaderItem = ({ title, path, options }) => (
-  <div className={cx("SiteHeader-item", options)}>
+const HeaderItem = ({ title, path, options, onClick }) => (
+  <div
+    onClick={onClick}
+    className={cx("SiteHeader-item", options)}
+  >
     <NavLink to={path} activeClassName="SiteHeader-navActive">
       <FlipText text={title} />
     </NavLink>
@@ -32,24 +36,38 @@ HeaderItem.propTypes = {
   path: PropTypes.string.isRequired,
   options: PropTypes.shape({
     border: PropTypes.bool
-  })
+  }),
+  onClick: PropTypes.func
 };
 
 HeaderItem.defaultProps = {
-  options: {}
+  options: {},
+  onClick: () => {}
 };
 
-const SiteHeader = () => (
-  <div className="SiteHeader">
-    <div className="SiteHeader-list">
-      <div className="SiteHeader-title-holder">
+const SiteHeader = () => {
+  const [open, setOpen] = useState(false);
+  const toggleOpen = () => setOpen(!open);
+
+  return (
+    <div className="SiteHeader">
+      <div className="SiteHeader-list">
         <TitleHeaderItem {...rootItem} />
-      </div>
-      <div className="SiteHeader-item-holder">
-        {headerItems.map(item => <HeaderItem key={item.title} {...item} />)}
+        <div className="SiteHeader-hamburger">
+          <div className={cx("SiteHeader-hamburger-overlay", { open })}>
+            {headerItems.map(item => (
+              <HeaderItem key={item.title} onClick={toggleOpen} {...item} />
+            ))}
+          </div>
+        </div>
+        <div onClick={toggleOpen} className="SiteHeader-button">
+          <span className={cx("SiteHeader-button-span", "top", { open })} />
+          <span className={cx("SiteHeader-button-span", "bottom", { open })} />
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
-export default SiteHeader;
+// TODO: Update when fixed: https://github.com/gaearon/react-hot-loader/issues/1088
+export default cold(SiteHeader);

@@ -4,7 +4,7 @@ import Blog from './blog/blog';
 import Contact from './contact/contact';
 
 export const rootItem = {
-  title: 'jared goguen | explore',
+  title: 'jared goguen',
   path: '/',
   component: Home,
 };
@@ -24,9 +24,7 @@ export const headerItems = [
     title: 'contact',
     path: '/contact/',
     component: Contact,
-    options: {
-      border: true
-    }
+    options: {}
   }
 ];
 

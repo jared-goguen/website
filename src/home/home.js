@@ -4,7 +4,7 @@ import './home.scss';
 
 const Home = () => (
   <div className="Home">
-    <FlipText text='hi ellie' font='' />
+    <FlipText text='hi ellie' />
   </div>
 );
 

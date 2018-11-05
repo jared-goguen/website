@@ -5,7 +5,7 @@ import { cx } from "Source/utils";
 import { cold } from 'react-hot-loader';
 import "./flip_text.scss";
 
-function FlipText({ text, delimiter = "" }) {
+const FlipText = ({ text, delimiter = "" }) => {
   const [flips, setFlips] = useState(Array(text.length).fill(false));
 
   const randomFlip = () => {
@@ -30,7 +30,7 @@ function FlipText({ text, delimiter = "" }) {
       ) : ' ')}
     </span>
   );
-}
+};
 
 FlipText.propTypes = {
   text: PropTypes.string.isRequired,
