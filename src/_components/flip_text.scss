@@ -9,8 +9,10 @@
   }
 
   &-holder {
-    &:hover > span, &:active > span {
-      transform: scaleX(1);
+    &:hover, &:active {
+      > span {
+        transform: unset;
+      }
     }
   }
 }

@@ -17,3 +17,23 @@ export const cx = (baseClass, ...rest) => {
 
   return classes.join(' ');
 };
+
+export const classnames = (...args) => {
+  const classes = [];
+
+  for (const argument of args) {
+    const type = typeof argument;
+
+    if (type === 'object') {
+      for (const key in argument) {
+        if (argument.hasOwnProperty(key) && argument[key]) {
+          classes.push(key);
+        }
+      }
+    } else if (type === 'string' || type === 'number') {
+      classes.push(argument);
+    }
+  }
+
+  return classes.join(' ');
+};

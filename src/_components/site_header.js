@@ -22,11 +22,11 @@ TitleHeaderItem.propTypes = {
 
 const HeaderItem = ({ title, path, options, onClick }) => (
   <div
-    onClick={onClick}
+    onClick={() => setTimeout(onClick, 200)}
     className={cx("SiteHeader-item", options)}
   >
-    <NavLink to={path} activeClassName="SiteHeader-navActive">
-      <FlipText text={title} />
+    <NavLink to={path} activeClassName="SiteHeader-navActive" className='SiteHeader-flip'>
+      <FlipText text={title} additionalClass='SiteHeader-flip'/>
     </NavLink>
   </div>
 );

@@ -8,7 +8,7 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: url('../assets/cursor.png'), auto;
+  //cursor: url('../assets/cursor.png'), auto;
 }
 
 code {
@@ -20,6 +20,8 @@ a {
   color: inherit;
   text-decoration: unset;
 }
+
+a:hover{}
 
 .App {
   text-align: center;

@@ -31,31 +31,40 @@
     padding: unset;
     position: relative;
 
+    & > span:last-child {
+      top: 3rem;
+      left: 50%;
+    }
+
     &:hover {
-      span:last-child {
+      span:first-child {
         top: 3rem;
+      }
+
+      span:last-child {
+        top: 1.73rem;
       }
     }
 
     &-span {
       position: absolute;
-      top: 1rem;
+      top: 1.73rem;
       left: 0;
       right: 0;
-      height: 1rem;
+      height: 0.75rem;
       background: $text-accent-light;
       transition: all 0.5s;
       border-radius: 1rem;
 
       &-open {
         transform: rotate(-45deg);
+        background: $text-accent-dark;
       }
     }
 
   }
 
   &-hamburger {
-    color: $text-primary;
 
     &-overlay {
       position: fixed;
@@ -81,9 +90,43 @@
   &-item {
     padding: 1rem;
     margin-left: 0.5rem;
+    position: relative;
+    color: $background-primary;
+
+    &:before {
+      display: block;
+      content: '';
+      background: $background-primary;
+      position: absolute;
+      padding: 0;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      z-index: -1;
+      transition: width 0.5s;
+    }
+
+    &:after {
+      display: block;
+      content: '';
+      background: $background-primary;
+      position: absolute;
+      padding: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 0;
+      z-index: -1;
+      transition: width 0.5s;
+    }
 
     &:hover, &:active {
       color: $border-primary;
+
+      &:before, &:after {
+        width: 50%;
+      }
     }
 
     &-holder {
@@ -104,5 +147,11 @@
         }
       }
     }
+  }
+
+  &-flip {
+    display: inline-block;
+    z-index: 1;
+    width: 100%;
   }
 }

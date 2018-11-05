@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { flipTime } from "Source/constants";
-import { cx } from "Source/utils";
+import { cx, classnames } from "Source/utils";
 import { cold } from 'react-hot-loader';
 import "./flip_text.scss";
 
-const FlipText = ({ text, delimiter = "" }) => {
+const FlipText = ({ text, delimiter = "", additionalClass = "" }) => {
   const [flips, setFlips] = useState(Array(text.length).fill(false));
 
   const randomFlip = () => {
@@ -22,7 +22,7 @@ const FlipText = ({ text, delimiter = "" }) => {
   });
 
   return (
-    <span className='FlipText-holder'>
+    <span className={classnames('FlipText-holder', additionalClass)}>
       {text.split(delimiter).map((character, index) => character !== ' ' ? (
         <span key={index} className={cx("FlipText", { flip: flips[index] })}>
           {character}
@@ -35,7 +35,8 @@ const FlipText = ({ text, delimiter = "" }) => {
 FlipText.propTypes = {
   text: PropTypes.string.isRequired,
   font: PropTypes.string.isRequired,
-  delimiter: PropTypes.string
+  delimiter: PropTypes.string,
+  additionalClass: PropTypes.string
 };
 
 // TODO: Update when fixed: https://github.com/gaearon/react-hot-loader/issues/1088
