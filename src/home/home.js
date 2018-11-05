@@ -1,10 +1,10 @@
 import React from "react";
-import Logo from "Assets/logo.svg";
+import FlipText from 'Source/_components/flip_text';
 import './home.scss';
 
 const Home = () => (
   <div className="Home">
-    <Logo className="Home-logo" alt="logo" />
+    <FlipText text='hi ellie' font='' />
   </div>
 );
 

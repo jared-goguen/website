@@ -29,3 +29,5 @@ export const headerItems = [
     }
   }
 ];
+
+export const flipTime = 500;
