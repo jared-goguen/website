@@ -1,24 +1,27 @@
+import Home from './home/home';
 import Projects from './projects/projects';
 import Blog from './blog/blog';
 import Contact from './contact/contact';
 
-export const title = 'jared goguen | explore';
-
-export const root = '/';
+export const rootItem = {
+  title: 'jared goguen | explore',
+  path: '/',
+  component: Home,
+};
 
 export const headerItems = [
   {
-    name: 'projects',
+    title: 'projects',
     path: '/projects/',
     component: Projects,
     options: {}
   }, {
-    name: 'blog',
+    title: 'blog',
     path: '/blog/',
     component: Blog,
     options: {}
   }, {
-    name: 'contact',
+    title: 'contact',
     path: '/contact/',
     component: Contact,
     options: {

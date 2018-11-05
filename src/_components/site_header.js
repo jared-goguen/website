@@ -1,39 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
-import { cxOptions } from "../utils";
-import { root, title, headerItems } from "../constants";
+import { cx } from "../utils";
+import { rootItem, headerItems } from "../constants";
 import "./site_header.scss";
 
-const TitleHeaderItem = ({ title }) => (
+const TitleHeaderItem = ({ title, path }) => (
   <div className="SiteHeader-title">
-    <NavLink
-      exact
-      to={root}
-      activeClassName="SiteHeader-navActive"
-    >
+    <NavLink exact to={path} activeClassName="SiteHeader-navActive">
       {title}
     </NavLink>
   </div>
 );
 
 TitleHeaderItem.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired
 };
 
-const HeaderItem = ({ name, path, options }) => (
-  <div className={cxOptions("SiteHeader-item", options)}>
-    <NavLink
-      to={path}
-      activeClassName="SiteHeader-navActive"
-    >
-      {name}
+const HeaderItem = ({ title, path, options }) => (
+  <div className={cx("SiteHeader-item", options)}>
+    <NavLink to={path} activeClassName="SiteHeader-navActive">
+      {title}
     </NavLink>
   </div>
 );
 
 HeaderItem.propTypes = {
-  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   options: PropTypes.shape({
     border: PropTypes.bool
@@ -48,12 +42,10 @@ const SiteHeader = () => (
   <div className="SiteHeader">
     <div className="SiteHeader-list">
       <div className="SiteHeader-title-holder">
-        <TitleHeaderItem title={title} />
+        <TitleHeaderItem {...rootItem} />
       </div>
       <div className="SiteHeader-item-holder">
-        {headerItems.map(({ name, path, options }) => (
-          <HeaderItem key={name} path={path} name={name} options={options} />
-        ))}
+        {headerItems.map(item => <HeaderItem key={item.name} {...item} />)}
       </div>
     </div>
   </div>

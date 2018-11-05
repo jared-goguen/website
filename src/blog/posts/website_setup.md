@@ -1,4 +1,4 @@
-### Website Setup
+## Website Setup
 
 Welcome! This is the introductory post to this blog (and is in fact being written before any of the blog functionality has been created).
 
@@ -7,46 +7,28 @@ This blog is meant to accompany [my personal website](jaredgoguen.com) to detail
 For the technology stack, I am using the following:
 
 - [React.js](reactjs.com) - Frontend UI
-- [React Router](reacttraining.com/react-router) - For Navigation with a SPA structure 
 - [webpack](webpack.js.org) - For Transpiling, Bundling, and Asset Mapping
 - [Express.js](expressjs.com) - Backend Server
 
 I am building this package as a [Heroku App](heroku.com) and using [Google Domains](domains.google.com) as a DNS.
 
-For the website, we will need two main folders to start with _`/assets/`_ for the various static assets and _`/src/`_ for all of the code. We will be using co-located SASS and presentational components will be located in a sub-folder titled _`/_components/`_. The starting file structure is shown below.
+For the website, we will need two main folders to start with _`/assets/`_ for the various static assets and _`/src/`_ for all of the code. The starting file structure is shown below.
 
 - _assets_
   - logo.svg
 - _src_
-  - __components_
-    - **site_header.js**
-    - site_header.scss
-  - _blog_
-    - blog.js
-  - _contact_
-    - contact.js
-  - _home_
-    - home.js
-  - _projects_
-    - projects.js
   - App.js
   - App.scss
-  - constants.js
-  - utils.js
-  - vars.scss
 - **.babelrc**
-- **.env**
-- **.eslintrc**
-- **.gitignore**
 - **package.json**
 - **server.js**
 - **webpack.common.js**
 - **webpack.dev.js**
 - **webpack.prod.js**
 
-The files bolded above in the root directory are used to setup the project configuration. We will go over the content of these files one-by-one.
+The files list in bold above in the root directory are used to setup the project configuration. We will go over the content of these files one-by-one.
 
-##### package.json
+#### package.json
 
 ```
 {
@@ -62,21 +44,17 @@ The files bolded above in the root directory are used to setup the project confi
   },
   "dependencies": {
     "express": "^4.16.4",
-    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
-    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0"
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "classnames": "^2.2.6",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
     "eslint": "4.19.1",
@@ -106,14 +84,11 @@ This file not only lists out the project's dependencies, but scripts can be defi
 
 ###### dependencies
 - **express** - Runs a HTTP server
-- **prop-types** - Library from specifying the props of React components
 - **react** - Base React library
 - **react-dom** - Base React library DOM extension (used to mount the application)
-- **react-router-dom** - Library used to link routes in the location bar to components that we want to mount
 
 ###### devDependencies
 Most of these dependencies are packages that are used by webpack in the transpilation process or eslint to supplement the default warnings. Only the noteworthy dependencies are commented on below.
-- **classnames** - QoL library for adding the className to React components
 - **webpack-dev-server** - Runs a development server capable of hot reloading React components
 - **webpack-merge** - Package that allows for multiple webpack configuration files to be merged; this allows separate development and production webpack configurations to be cleanly separated.
 
@@ -128,8 +103,258 @@ Most of these dependencies are packages that are used by webpack in the transpil
 **build**: webpack --config webpack.prod.js
 - Bundles all code and assets using the production configuration.
 
-**heroku-prebuild**: npm install --dev
-- Installs all development dependencies in the Heroku pre-build phase.
-
 **heroku-postbuild**: npm run-script build
-- Instructs Heroku to construct the production bundle before launching the Express server.
+- Instructs Heroku to construct the production bundle before launching the Express server. Since bundling is now integrate into the Heroku deploy process, we should never have to do this manually.
+
+This covers **package.json**, it makes sense to cover the webpack configurations next.
+
+#### webpack.common.js
+
+```
+const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  target: 'web',
+  entry: {
+    app: './src/App.js'
+  },
+  plugins: [
+    new CleanWebpackPlugin(['public']),
+    new HtmlWebpackPlugin({
+      title: 'jared goguen | explore',
+      favicon: 'assets/logo.svg',
+      inject: false,
+      template: require('html-webpack-template'),
+      appMountId: 'app'
+    })
+  ],
+  output: {
+    path: path.resolve(__dirname, 'public'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    alias: {
+      Assets: path.resolve(__dirname, 'assets'),
+    },
+    extensions: ['.js', '.jsx']
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      }, {
+        test: /\.s?css$/,
+        exclude: /node_modules/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' }
+        ]
+      }, {
+        test: /\.svg$/,
+        use: {
+          loader: 'react-svg-loader'
+        }
+      }, {
+        test: /\.(jpg|png)$/,
+        loader: 'url-loader'
+      }
+    ]
+  }
+};
+```
+
+This is the common webpack file that contains the configuration options that are shared by both the development and production builds.
+
+```
+target: web
+```
+Specifies that we our bundle is targeting a web/browser environment.
+
+```  
+entry: {
+  app: './src/App.js'
+}
+```
+The entry point of the application.
+ 
+```
+plugins: [
+  new CleanWebpackPlugin(['public']),
+  new HtmlWebpackPlugin({
+    title: 'jared goguen | explore',
+    favicon: 'assets/logo.svg',
+    inject: false,
+    template: require('html-webpack-template'),
+    appMountId: 'app'
+  })
+]
+```
+A list of plugins to run. `CleanWebpackPlugin` clears out the build directory before rebuilding. `HtmlWebpackPlugin` creates a simple *index.html* page to mount the App in.
+
+```
+output: {
+  path: path.resolve(__dirname, 'public'),
+  filename: 'bundle.js'
+}
+```
+Specifies the output path of the bundle.
+
+```
+resolve: {
+  alias: {
+    Assets: path.resolve(__dirname, 'assets'),
+  },
+  extensions: ['.js', '.jsx']
+}
+```
+ `extensions` specifies the file extensions that will be automatically be checked when importing. This allows these extensions to be omitted when importing. `alias` allows for path aliases to be created; this is particularly useful for assets in this project to avoid imports like `../../../a/b`.
+
+```
+module: {
+  rules: [
+    {
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader'
+      }
+    }, {
+      test: /\.s?css$/,
+      exclude: /node_modules/,
+      use: [
+        { loader: 'style-loader' },
+        { loader: 'css-loader' },
+        { loader: 'sass-loader' }
+      ]
+    }, {
+      test: /\.svg$/,
+      use: {
+        loader: 'react-svg-loader'
+      }
+    }, {
+      test: /\.(jpg|png)$/,
+      loader: 'url-loader'
+    }
+  ]
+}
+```
+`rules` specify the webpack loaders that should be used to link different types of files.
+
+#### webpack.dev.js
+
+```
+const merge = require('webpack-merge');
+const common = require('./webpack.common.js');
+
+module.exports = merge(common, {
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './public',
+    hot: true
+  },
+  output: {
+    publicPath: 'http://localhost:8080'
+  },
+});
+```
+This file specifies settings for the development server and the development source maps.
+
+#### webpack.prod.js
+
+```
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const common = require('./webpack.common.js');
+
+module.exports = merge(common, {
+  mode: 'production',
+  devtool: 'source-map',
+  plugins: [
+    new UglifyJSPlugin({
+      sourceMap: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
+  ]
+});
+```
+This file specifies that the bundle should be uglified and the production source maps.
+
+#### .babelrc
+
+```
+{
+  "presets": ["env", "react"],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-class-properties",
+    "react-hot-loader/babel"
+  ]
+}
+```
+The hot loader is required to allow the development server to hot-reload. The other plugins enable some useful syntax.
+
+#### server.js
+
+```
+const express = require('express');
+const path = require('path');
+const port = process.env.PORT || 8080;
+const app = express();
+
+app.use(express.static(path.resolve(__dirname, 'public')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+
+app.listen(port);
+```
+This bare-bones Express server just serves the *index.html* that is created by the webpack build process. This file is already linked to the bundle.
+
+With these configuration files, we can run either `npm run-script dev` to start the development server. Or, we could push the repo to Heroku and it would bundle up our code and assets and start the Express server. To test this out, we will create a simple application.
+
+#### App.js
+```
+import React from "react";
+import ReactDOM from "react-dom";
+import Logo from "Assets/logo.svg";
+import "./App.scss";
+
+const App = () => (
+  <div className="App">
+    <Logo className="App-logo" />
+  </div>
+);
+
+ReactDOM.render(<App />, document.getElementById('app'));
+```
+
+#### App.scss
+```
+.App {
+  height: 100vh;
+  width: 100vw;
+  background-color: #dddddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &-logo {
+    height: 40vmin;
+  }
+```
+
+If we steal *logo.svg* from `create-react-app`, we will have close to recreated their default setup, expect we have control over the build process and can readily deploy to Heroku.
+
+[image](Assets/blog/website_setup.png)
