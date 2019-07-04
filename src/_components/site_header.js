@@ -3,7 +3,7 @@ import { cold } from "react-hot-loader";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import FlipText from "./flip_text";
-import { cx } from "../utils";
+import { cx } from "Source/utils";
 import { rootItem, headerItems } from "Source/constants";
 import "./site_header.scss";
 

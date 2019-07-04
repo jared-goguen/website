@@ -121,8 +121,8 @@ Now we can use these items to generate the navigational header.
 import React from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
-import { cx } from "../utils";
-import { rootItem, headerItems } from "../constants";
+import { cx } from "Source/utils";
+import { rootItem, headerItems } from "Source/constants";
 import "./site_header.scss";
 
 
