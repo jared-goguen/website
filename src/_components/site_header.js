@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import FlipText from "./flip_text";
 import { cx } from "../utils";
-import { rootItem, headerItems } from "../constants";
+import { rootItem, headerItems } from "Source/constants";
 import "./site_header.scss";
 
 const TitleHeaderItem = ({ title, path }) => (
