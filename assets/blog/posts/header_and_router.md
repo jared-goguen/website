@@ -1,4 +1,4 @@
-The first addition to our blank-slate website will be a navigational header that uses [**React Router**](reacttraining.com/react-router) to allow for window location bar navigation and history within our single-page application.
+The first addition to our blank-slate website will be a navigational header that uses [**React Router**](http://reacttraining.com/react-router) to allow for window location bar navigation and history within our single-page application.
 
 ```
 npm install --save react-router-dom

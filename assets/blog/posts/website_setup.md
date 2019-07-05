@@ -2,15 +2,15 @@
 
 Welcome! This is the introductory post to this blog (and is in fact being written before any of the blog functionality has been created).
 
-This blog is meant to accompany [my personal website](jaredgoguen.com) to detail how it has been created from the ground up, which necessitates writing this particular post anachronistically.
+This blog is meant to accompany [my personal website](http://jaredgoguen.com) to detail how it has been created from the ground up, which necessitates writing this particular post anachronistically.
 
 For the technology stack, I am using the following:
 
-- [React.js](reactjs.com) - Frontend UI
-- [webpack](webpack.js.org) - For Transpiling, Bundling, and Asset Mapping
-- [Express.js](expressjs.com) - Backend Server
+- [React.js](http://reactjs.com) - Frontend UI
+- [webpack](http://webpack.js.org) - For Transpiling, Bundling, and Asset Mapping
+- [Express.js](http://expressjs.com) - Backend Server
 
-I am building this package as a [Heroku App](heroku.com) and using [Google Domains](domains.google.com) as a DNS.
+I am building this package as a [Heroku App](http://heroku.com) and using [Google Domains](http://domains.google.com) as a DNS.
 
 For the website, we will need two main folders to start with _`/assets/`_ for the various static assets and _`/src/`_ for all of the code. The starting file structure is shown below.
 
@@ -357,4 +357,4 @@ ReactDOM.render(<App />, document.getElementById('app'));
 
 If we steal *logo.svg* from `create-react-app`, we will have close to recreated their default setup, expect we have control over the build process and can readily deploy to Heroku.
 
-[image](/Assets/blog/images/website_setup.png)
+[image](Assets/blog/images/website_setup.png)
