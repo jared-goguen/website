@@ -10,11 +10,12 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['public']),
     new HtmlWebpackPlugin({
-      title: 'TITLE',
+      title: 'self-referential blog',
       favicon: 'assets/logo.svg',
       inject: false,
       template: require('html-webpack-template'),
-      appMountId: 'app'
+      appMountId: 'app',
+      baseHref: '/'
     })
   ],
   output: {
