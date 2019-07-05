@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   target: 'web',
   entry: {
-    app: './src/App.js'
+    app: ['babel-polyfill', './src/App.js']
   },
   plugins: [
     new CleanWebpackPlugin(['public']),
@@ -53,6 +53,9 @@ module.exports = {
       }, {
         test: /\.(jpg|png)$/,
         loader: 'url-loader'
+      }, {
+        test: /\.(md|txt)$/,
+        loader: 'raw-loader'
       }
     ]
   }
