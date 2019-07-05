@@ -349,4 +349,4 @@ When `open` is true, we show the overlay containing all of the header items. Reg
 
 And voila! Things look a lot more unique now... for better or for worse.
 
-[image](Assets/blog/styling_take_1.png)
+[image](Assets/blog/images/styling_take_1.png)

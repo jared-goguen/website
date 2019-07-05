@@ -357,4 +357,4 @@ ReactDOM.render(<App />, document.getElementById('app'));
 
 If we steal *logo.svg* from `create-react-app`, we will have close to recreated their default setup, expect we have control over the build process and can readily deploy to Heroku.
 
-[image](Assets/blog/website_setup.png)
+[image](/Assets/blog/images/website_setup.png)

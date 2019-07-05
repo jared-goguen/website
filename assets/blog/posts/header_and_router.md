@@ -311,4 +311,4 @@ a {
 
 And now we have a navigational header that links to sub-pages in our application!
 
-[image](Assets/blog/header_and_router.png)
+[image](Assets/blog/images/header_and_router.png)

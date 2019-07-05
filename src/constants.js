@@ -1,7 +1,11 @@
 import Home from './home/home';
 import Projects from './projects/projects';
 import Blog from './blog/blog';
+import BlogPost from './blog/blog_post';
 import Contact from './contact/contact';
+
+export const flipTime = 1000;
+export const postsPath = 'posts';
 
 export const rootItem = {
   title: 'jared goguen',
@@ -9,7 +13,7 @@ export const rootItem = {
   component: Home,
 };
 
-export const headerItems = [
+export const headerRoutes = [
   {
     title: 'projects',
     path: '/projects/',
@@ -28,4 +32,11 @@ export const headerItems = [
   }
 ];
 
-export const flipTime = 1000;
+export const subRoutes = [
+  {
+    title: 'posts',
+    path: `/blog/${postsPath}/:name`,
+    component: BlogPost,
+    options: {}
+  }
+];

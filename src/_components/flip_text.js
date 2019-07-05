@@ -34,7 +34,6 @@ const FlipText = ({ text, delimiter = "", additionalClass = "" }) => {
 
 FlipText.propTypes = {
   text: PropTypes.string.isRequired,
-  font: PropTypes.string.isRequired,
   delimiter: PropTypes.string,
   additionalClass: PropTypes.string
 };

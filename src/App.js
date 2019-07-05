@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route } from "react-router-dom";
 import SiteHeader from "./_components/site_header";
-import { rootItem, headerItems } from "./constants";
+import { rootItem, headerRoutes, subRoutes } from "./constants";
 import "./App.scss";
 
 const App = () => (
@@ -10,7 +10,10 @@ const App = () => (
     <div className="App">
       <SiteHeader />
       <Route exact path={rootItem.path} component={rootItem.component} />
-      {headerItems.map(({path, component}) => (
+      {headerRoutes.map(({path, component}) => (
+        <Route exact key={path} path={path} component={component} />
+      ))}
+      {subRoutes.map(({path, component}) => (
         <Route key={path} path={path} component={component} />
       ))}
     </div>

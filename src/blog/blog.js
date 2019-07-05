@@ -1,11 +1,16 @@
 import React from "react";
-import FlipText from 'Source/_components/flip_text';
+import { blogPostNames } from './post_provider';
+import { postsPath } from 'Source/constants';
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import './blog.scss';
 
 const Blog = () => (
   <div className="Blog">
-    <FlipText text='Blog' />
+    {blogPostNames.map(name => 
+      <Link key={name} to={`${postsPath}/${name}`}>{name}</Link>
+    )}
   </div>
 );
 
-export default Blog;
+export default withRouter(Blog);

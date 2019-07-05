@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import FlipText from "./flip_text";
 import { cx } from "Source/utils";
-import { rootItem, headerItems } from "Source/constants";
+import { rootItem, headerRoutes } from "Source/constants";
 import "./site_header.scss";
 
 const TitleHeaderItem = ({ title, path }) => (
@@ -55,7 +55,7 @@ const SiteHeader = () => {
         <TitleHeaderItem {...rootItem} />
         <div className="SiteHeader-hamburger">
           <div className={cx("SiteHeader-hamburger-overlay", { open })}>
-            {headerItems.map(item => (
+            {headerRoutes.map(item => (
               <HeaderItem key={item.title} onClick={toggleOpen} {...item} />
             ))}
           </div>
