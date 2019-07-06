@@ -136,4 +136,4 @@ const BlogPost = (name) => (
 
 Now, it isn't pretty and we have a lot of work making both of these look good and tweaking how blog posts are displayed, but we have some more important things to do. Also, when our server gets to be a little more mature, we will switch over to serving the blog posts directly. Right now, the routing is broken and navigating to the `/blog/` route directly in the address bar results in a 404 which makes testing CSS changes a real nightmare. After that, we will have to figure out how to resolve static files.
 
-[image](/assets/blog/images/enabling_markdown.png)
+![image](/assets/blog/images/enabling_markdown.png)
