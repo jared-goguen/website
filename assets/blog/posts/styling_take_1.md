@@ -1,3 +1,5 @@
+# Styling: Take 1
+
 Now that we have a navigational header up and running, let's do some work ditching the default styles and making it our own. I am writing this post waaaaay after I wrote the code, so I'm going to have try to fill in the blanks here. I believe that most of the commits since the last post contain boring CSS changes, but I have found a few interesting things that were introduced. 
 
 ## React Hooks
@@ -349,4 +351,4 @@ When `open` is true, we show the overlay containing all of the header items. Reg
 
 And voila! Things look a lot more unique now... for better or for worse.
 
-[image](Assets/blog/images/styling_take_1.png)
+[image](/assets/blog/images/styling_take_1.png)
