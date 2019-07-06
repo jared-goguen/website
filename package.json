@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --hot --config webpack.dev.js",
-    "start": "node server.js",
     "build": "webpack --config webpack.prod.js",
+    "start": "node server/server.js",
+    "run": "npm run-script build; npm run-script start",
     "heroku-postbuild": "npm run-script build"
   },
   "dependencies": {

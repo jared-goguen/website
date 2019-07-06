@@ -1,5 +1,5 @@
 import React from "react";
-import FlipText from 'Source/_components/flip_text';
+import FlipText from 'Client/_components/flip_text';
 import './contact.scss';
 
 const Contact = () => (

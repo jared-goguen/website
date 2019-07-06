@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { flipTime } from "Source/constants";
-import { cx, classnames } from "Source/utils";
+import { flipTime } from "Client/constants";
+import { cx, classnames } from "Client/utils";
 import { cold } from 'react-hot-loader';
 import "./flip_text.scss";
 

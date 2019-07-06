@@ -8,7 +8,7 @@ const Blog = () => {
   const [postNames, setPostNames] = useState([]);
 
   useEffect(() => {
-    wretch('api/blog/posts')
+    wretch('/api/blog/posts')
       .get()
       .json()
       .then(({posts}) => setPostNames(posts))

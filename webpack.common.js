@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   target: 'web',
   entry: {
-    app: ['babel-polyfill', './src/App.js']
+    app: ['babel-polyfill', './client/App.js']
   },
   plugins: [
     new CleanWebpackPlugin(['public']),
@@ -24,9 +24,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Root: path.resolve(__dirname),
       Assets: path.resolve(__dirname, 'assets'),
-      Source: path.resolve(__dirname, 'src')
+      Client: path.resolve(__dirname, 'client')
     },
     extensions: ['.js', '.jsx']
   },
