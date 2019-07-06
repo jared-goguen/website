@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
-import { postProvider }  from './post_provider';
+import wretch from 'wretch';
 import { withRouter } from 'react-router';
 import './blog_post.scss';
 
-const BlogPost = ({match}) => (
-  <div className="BlogPost">
-    <Markdown source={postProvider(match.params.name)} />
-  </div>
-);
+const BlogPost = ({match}) => {
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+    wretch(`/assets/blog/posts/${match.params.name}.md`)
+      .get()
+      .text()
+      .then(setContent);
+  }, []);
+
+  return (
+    <div className="BlogPost">
+      <Markdown source={content} />
+    </div>
+  );
+};
 
 BlogPost.propTypes = {
     match: PropTypes.shape({
