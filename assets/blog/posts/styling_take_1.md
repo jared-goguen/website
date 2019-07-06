@@ -8,7 +8,7 @@ In Reach 16.8.0, Hooks were introduced with exposes a light-weight API for state
 #### _components/flip_text.js
 ```
 import React, { useState, useEffect } from "react";
-import { classnames } from "Source/utils";
+import { classnames } from "Client/utils";
 import "./flip_text.scss";
 
 const FlipText = ({ text, additionalClass = "" }) => {
@@ -49,7 +49,7 @@ Note that the actual array variable is contained in `flips`, but `useState` also
 In order to manipulate this state, we will create an effect that intermittently flips a random byte in the array.
 
 ```
-import { flipTime } from "Source/constants";
+import { flipTime } from "Client/constants";
 
 const randomFlip = () => {
   const index = Math.floor(Math.random() * text.length);
@@ -98,8 +98,8 @@ Finally, we put it all together by updating the render to connect the state bool
 #### _components/flip_text.js
 ```
 import React, { useState, useEffect } from "react";
-import { flipTime } from "Source/constants";
-import { cx, classnames } from "Source/utils";
+import { flipTime } from "Client/constants";
+import { cx, classnames } from "Client/utils";
 import "./flip_text.scss";
 
 const FlipText = ({ text, delimiter = "", additionalClass = "" }) => {
@@ -138,8 +138,8 @@ The other big changes it seems that I made was to update the boring navigational
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import FlipText from "./flip_text";
-import { cx } from "Source/utils";
-import { rootItem, headerItems } from "Source/constants";
+import { cx } from "Client/utils";
+import { rootItem, headerItems } from "Client/constants";
 import "./site_header.scss";
 
 const TitleHeaderItem = ({ title, path }) => (
