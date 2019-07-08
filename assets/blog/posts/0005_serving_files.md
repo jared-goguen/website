@@ -1,4 +1,4 @@
-## Serving Files
+# Serving Files
 
 In the last post, we used `raw-loader` in order to include our Markdown in our Webpack build and then `react-markdown` to render these files after stringifying them. This was accompanied with a comment about how cheap this solution was but it would do until a more scalable solution was justified. Well, the time is nigh -- less than twenty-four hours later. 
 
@@ -30,7 +30,7 @@ app.get('/blog/posts', (req, res) => {
   const files = fs.readdirSync('assets/blog/posts');
   const posts = files.map(getBaseName);
   res.setHeader('content-type', 'application/json');
-  res.send(JSON.stringify({posts}));
+  res.send(JSON.stringify(posts));
 })
 
 app.get('*', (req, res) => {
@@ -61,7 +61,7 @@ const Blog = () => {
     wretch('/blog/posts')
       .get()
       .json()
-      .then(({posts}) => setPostNames(posts))
+      .then(setPostNames)
   }, []);
 
   return (

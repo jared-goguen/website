@@ -1,6 +1,11 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const BlogPost = require('./blog_post');
+const normalizePosts = require('./scripts/normalize_blog_posts');
+
+normalizePosts();
+
 const port = process.env.PORT || 8080;
 const app = express();
 
@@ -21,10 +26,10 @@ app.get(['/public/*', '/assets/*'], (req, res) => {
 });
 
 app.get('/api/blog/posts', (req, res) => {
-  const files = fs.readdirSync(resolveFile('assets/blog/posts'));
-  const posts = files.map(file => path.basename(file, '.md'));
-  res.setHeader('content-type', 'application/json');
-  res.send(JSON.stringify({posts}));
+  BlogPost.find({}).exec((error, result) => {
+    res.setHeader('content-type', 'application/json');
+    res.send(JSON.stringify(result));
+  });
 })
 
 app.get('*', (req, res) => {

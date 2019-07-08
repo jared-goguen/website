@@ -1,4 +1,4 @@
-## Enabling Markdown
+# Enabling Markdown
 
 In this episode, we are going to figure out how to actually get all these blog posts that have been collecting dust in the `assets` directory actually rendered on the website. Once this is complete, we will be at full self-reference status so that future commits will be accompanied by a blog post explaining how I did what I did (let's leave the "why" for philosophers).
 
@@ -80,7 +80,7 @@ npm install --save-dev babel-plugin-transform-runtime
 module.exports = {
   // ...
   entry: {
-    app: ['babel-polyfill', './src/App.js']
+    app: ['babel-polyfill', './client/App.js']
   },
   // ...
   module: {

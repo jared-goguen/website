@@ -23,11 +23,11 @@ const BlogPost = ({match}) => {
 };
 
 BlogPost.propTypes = {
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        name: PropTypes.string.isRequired
-      }).isRequired
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      name: PropTypes.string.isRequired
     }).isRequired
-  };
+  }).isRequired
+};
 
 export default withRouter(BlogPost);

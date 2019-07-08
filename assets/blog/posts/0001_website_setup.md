@@ -1,4 +1,4 @@
-## Website Setup
+# Website Setup
 
 Welcome! This is the introductory post to this blog (and is in fact being written before any of the blog functionality has been created).
 
@@ -12,11 +12,11 @@ For the technology stack, I am using the following:
 
 I am building this package as a [Heroku App](http://heroku.com) and using [Google Domains](http://domains.google.com) as a DNS.
 
-For the website, we will need two main folders to start with _`/assets/`_ for the various static assets and _`/src/`_ for all of the code. The starting file structure is shown below.
+For the website, we will need two main folders to start with _`/assets/`_ for the various static assets and _`/client/`_ for all of the code. The starting file structure is shown below.
 
 - _assets_
   - logo.svg
-- _src_
+- _client_
   - App.js
   - App.scss
 - **.babelrc**
@@ -104,7 +104,7 @@ Most of these dependencies are packages that are used by webpack in the transpil
 - Bundles all code and assets using the production configuration.
 
 **heroku-postbuild**: npm run-script build
-- Instructs Heroku to construct the production bundle before launching the Express server. Since bundling is now integrate into the Heroku deploy process, we should never have to do this manually.
+- Instructs Heroku to construct the production bundle before launching the Express server. Since bundling is now integrated into the Heroku deploy process, we should never have to do this manually.
 
 This covers **package.json**, it makes sense to cover the webpack configurations next.
 
@@ -118,7 +118,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   target: 'web',
   entry: {
-    app: './src/App.js'
+    app: './client/App.js'
   },
   plugins: [
     new CleanWebpackPlugin(['public']),
@@ -179,7 +179,7 @@ Specifies that we our bundle is targeting a web/browser environment.
 
 ```  
 entry: {
-  app: './src/App.js'
+  app: './client/App.js'
 }
 ```
 The entry point of the application.
