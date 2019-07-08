@@ -1,4 +1,4 @@
-## Header and Router
+# Header and Router
 
 The first addition to our blank-slate website will be a navigational header that uses [**React Router**](http://reacttraining.com/react-router) to allow for window location bar navigation and history within our single-page application.
 
@@ -8,7 +8,7 @@ npm install --save react-router-dom
 
 We are also going to be filling out our source code directory some.
 
-- _src_
+- _client_
   - __components_
     - site_header.js
     - site_header.scss

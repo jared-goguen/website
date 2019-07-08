@@ -1,23 +1,41 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import wretch from 'wretch';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import './blog.scss';
 
+const BlogPostSnippet = ({id, title, date, file}) => (
+  <Link to={`posts/${file}`}>
+    <div className="Blog-snippet">
+      {title}
+      <span className="Blog-snippet-id">Post {id}</span>
+      <span className="Blog-snippet-date">{date}</span>
+    </div>
+  </Link>
+);
+
+BlogPostSnippet.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  date: PropTypes.date,
+  file: PropTypes.string
+};
+
 const Blog = () => {
-  const [postNames, setPostNames] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     wretch('/api/blog/posts')
       .get()
       .json()
-      .then(({posts}) => setPostNames(posts))
+      .then(setPosts)
   }, []);
 
   return (
     <div className="Blog">
-    {postNames.map(name =>
-      <Link key={name} to={`posts/${name}`}>{name}</Link>
+    {posts.map(post =>
+      <BlogPostSnippet key={post.id} {...post} />
     )}
   </div>
   );

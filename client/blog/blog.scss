@@ -1,16 +1,38 @@
 @import 'Client/vars.scss';
 
 .Blog {
-  align-items: center;
-  justify-content: center;
-
   font-family: $font-accent4;
 
-  a {
+  &-snippet {
+    position: relative;
     display: block;
+    padding: 0.5em;
+    border: 1px solid;
+    margin: 0.5em;
+    text-align: center;
+    border-radius: 0.25em;
     color: $text-accent-light;
-
+    background: $text-accent-dark;
+    border-color: $text-primary;
+    
     &:hover, &:active {
+      color: $text-primary;
+      border-color: $text-accent-light;
+    }
+
+    &-id {
+      position: absolute;
+      top: 0.25em;
+      left: 0.25em;
+      font-size: 0.75em;
+      color: $text-secondary;
+    }
+
+    &-date {
+      position: absolute;
+      bottom: 0.5em;
+      right: 0.5em;
+      font-size: 0.5em;
       color: $text-primary;
     }
   }
